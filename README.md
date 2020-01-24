@@ -1,3 +1,3 @@
 # cmpnt_creator
 
-#how to run
+## how to run
