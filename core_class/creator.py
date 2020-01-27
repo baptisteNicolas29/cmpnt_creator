@@ -90,3 +90,9 @@ class Creator:
         matrix= cmds.getAttr(self.placers[placer_idx]+ '.worldMatrix')
 
         return matrix[axis.index(axe)* 4: axis.index(axe)* 4+ 3]
+
+    def build_joints(self):
+
+        for node in self.jnt_list:
+
+            cmds.createNode('joint', n= node) if not cmds.objExists(node) else None
