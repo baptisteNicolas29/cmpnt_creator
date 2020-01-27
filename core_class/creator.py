@@ -93,6 +93,31 @@ class Creator:
 
     def build_joints(self):
 
+        """
+            name: build_joints
+            desc:
+        """
+
         for node in self.jnt_list:
 
             cmds.createNode('joint', n= node) if not cmds.objExists(node) else None
+
+    def parent_joints(self):
+
+        """
+            name: parent_joints
+            desc:
+        """
+
+        for node in self.jnt_list:
+
+            if not cmds.listRelatives(node, p= 1)== None:
+
+                cmds.parent(node, w= 1)
+
+
+        for idx, node in enumerate(self.jnt_list):
+
+            if idx!= 0:
+
+                cmds.parent(self.jnt_list[idx], self.jnt_list[idx- 1])
