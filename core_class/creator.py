@@ -3,6 +3,7 @@ import maya.OpenMaya as om
 
 
 class Creator:
+
     """
         name: Creator
         arg: placers | string:list | is the placers list
@@ -18,6 +19,7 @@ class Creator:
         self.placers_vector= self.set_placers_vector()
 
     def set_placers_vector(self):
+
         """
             name: placer_vector
             desc: build vectors of placers
@@ -61,7 +63,8 @@ class Creator:
         final_matrix = (x_vec.x, x_vec.y, x_vec.z, 0, y_vec.x, y_vec.y, y_vec.z, 0, z_vec.x, z_vec.y, z_vec.z, 0, vpos[0], vpos[1], vpos[2], 1)
         cmds.xform(self.jnt_list[placer_idx], m= final_matrix, ws= 1)
 
-    def get_normal_plan_vec(self, base_vec, middle_vec, front_vec):
+    def get_normal_plan_vector(self, base_vec, middle_vec, front_vec):
+
         """
             name: get_normal_plan_vec
             arg: base_vec | float:array | base vector
@@ -86,5 +89,4 @@ class Creator:
         axis= ['x', 'y', 'z']
         matrix= cmds.getAttr(self.placers[placer_idx]+ '.worldMatrix')
 
-        print matrix
-        print matrix[axis.index(axe)* 4: axis.index(axe)* 4+ 3]
+        return matrix[axis.index(axe)* 4: axis.index(axe)* 4+ 3]
