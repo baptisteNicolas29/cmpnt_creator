@@ -11,10 +11,15 @@ class Creator:
         desc:
     """
 
-    def __init__(self, placers, jnts_name):
+    def __init__(self, placers, jnts_name, prefix= '', suffix= ''):
 
         self.placers= placers
-        self.jnt_list= jnts_name
+
+        self.jnt_list= []
+
+        for jnt in jnts_name:
+
+            self.jnt_list+= ['{0}{1}{2}'.format(prefix, jnt, suffix)]
 
         self.placers_vector= self.set_placers_vector()
 
@@ -40,6 +45,10 @@ class Creator:
         desc: align translate between placer and bone
         """
         cmds.xform(self.jnt_list[placer_idx], ws= 1, t= (self.placers_vector[placer_idx][0], self.placers_vector[placer_idx][1], self.placers_vector[placer_idx][2]))
+
+    def align_rotation(self, placer_idx):
+
+        cmds.xform(self.jnt_list[placer_idx], ws= 1, ro= cmds.xform(self.placers[placer_idx], q= 1, ws= 1, ro= 1))
 
     def align_foward_up_rotate(self, placer_idx, up_vec):
 
